@@ -1,0 +1,14 @@
+@import "~bootswatch/dist/morph/bootstrap.min.css";
+
+body{
+    font-family: Oswald, sans-serif;
+}
+
+.frontText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #252525;
+    font-size: 3rem;
+    height: 50vh;
+}
