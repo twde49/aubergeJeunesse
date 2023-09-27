@@ -12,3 +12,10 @@ body{
     font-size: 3rem;
     height: 50vh;
 }
+
+.baseText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
