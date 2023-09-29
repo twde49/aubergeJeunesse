@@ -11,9 +11,11 @@
     {{ form_row(publicHouseForm.zipCode) }}
     {{ form_row(publicHouseForm.city) }}
     {{ form_row(publicHouseForm.district) }}
+    {{ form_row(publicHouseForm.email) }}
+    {{ form_row(publicHouseForm.type) }}
 
 
-    <a href="{{ path('app_publichouse_new') }}" class="btn btn-success">Créer</a>
+    <button class="btn btn-success" type="submit">Créer</button>
     {{ form_end(publicHouseForm) }}
 
 {% endblock %}

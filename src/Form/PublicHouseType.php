@@ -25,6 +25,10 @@ class PublicHouseType extends AbstractType
                 "class"=> District::class,
                 "choice_label"=>"name"
             ])
+            ->add('type', EntityType::class,[
+                "class"=> Type::class,
+                "choice_label"=>"name"
+            ])
 
         ;
     }

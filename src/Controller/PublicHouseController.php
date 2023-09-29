@@ -18,25 +18,25 @@ class PublicHouseController extends AbstractController
     public function index(PublicHouseRepository $repository): Response
     {
         return $this->render('public_house/index.html.twig', [
-            "publicHouses"=>$repository->findAll(),
+            "hostels"=>$repository->findAll(),
         ]);
     }
 
     #[Route("/new",name:"app_publichouse_new")]
     public function new(Request $request, EntityManagerInterface $manager): Response{
 
-        $publicHouse = new PublicHouse();
-        $publicHouseForm = $this->createForm(PublicHouseType::class,$publicHouse);
-        $publicHouseForm->handleRequest($request);
-        if ($publicHouseForm->isSubmitted() && $publicHouseForm->isValid()){
-            $manager->persist($publicHouse);
+        $hostel = new PublicHouse();
+        $hostelForm = $this->createForm(PublicHouseType::class,$hostel);
+        $hostelForm->handleRequest($request);
+        if ($hostelForm->isSubmitted() && $hostelForm->isValid()){
+            $manager->persist($hostel);
             $manager->flush();
 
             return $this->redirectToRoute("app_public_house");
         }
 
         return $this->render("public_house/create.html.twig",[
-            "publicHouseForm"=>$publicHouseForm->createView()
+            "hostelForm"=>$hostelForm->createView()
         ]);
     }
 }

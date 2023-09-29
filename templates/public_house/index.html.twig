@@ -4,13 +4,18 @@
 
 {% block body %}
 
-    {% for house in publicHouses %}
+    {% if hostels is null %}
+    <h1>Rien à voir ici pour l'instant</h1>
+    {% else %}
+    {% for house in hostels %}
         {{ house.name }}
         {{ house.city }}
-        {{ house.district }}
-        {{ house.streetNumber + house.street }}
+        {{ house.district.name }}
+        {{ house.streetNumber}} {{ house.street  }}
         {{ house.zipCode }}
         {{ house.city }}
     {% endfor %}
+
+    {% endif %}
 
 {% endblock %}
