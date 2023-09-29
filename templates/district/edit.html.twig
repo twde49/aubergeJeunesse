@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit District{% endblock %}
+
+{% block body %}
+    <h1>Edit District</h1>
+
+    {{ include('district/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_district_index') }}">back to list</a>
+
+    {{ include('district/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New District{% endblock %}
+
+{% block body %}
+    <h1>Create new District</h1>
+
+    {{ include('district/_form.html.twig') }}
+
+    <a href="{{ path('app_district_index') }}">back to list</a>
+{% endblock %}
