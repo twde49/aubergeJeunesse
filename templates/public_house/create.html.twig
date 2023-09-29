@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes nos auberges{% endblock %}
+
+{% block body %}
+
+    {{ form_start(publicHouseForm) }}
+    {{ form_row(publicHouseForm.name) }}
+    {{ form_row(publicHouseForm.streetNumber) }}
+    {{ form_row(publicHouseForm.street) }}
+    {{ form_row(publicHouseForm.zipCode) }}
+    {{ form_row(publicHouseForm.city) }}
+    {{ form_row(publicHouseForm.district) }}
+
+
+    <a href="{{ path('app_publichouse_new') }}" class="btn btn-success">Créer</a>
+    {{ form_end(publicHouseForm) }}
+
+{% endblock %}

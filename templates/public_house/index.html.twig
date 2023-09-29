@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes nos auberges{% endblock %}
+
+{% block body %}
+
+    {% for house in publicHouses %}
+        {{ house.name }}
+        {{ house.city }}
+        {{ house.district }}
+        {{ house.streetNumber + house.street }}
+        {{ house.zipCode }}
+        {{ house.city }}
+    {% endfor %}
+
+{% endblock %}
