@@ -23,8 +23,32 @@ body{
 }
 
 .backgroundImage{
-    height: 20vh;
+    height: 40vh;
     top: 0;
     width: 100vw;
+    background-position: top;
+    background-size: cover;
+    left: 0;
+    position: absolute;
+    z-index: -1;
     background-image: url("../../src/images/young.jpg");
+}
+
+.hostel{
+    display: flex;
+    flex-direction: row;
+    width: 20vw;
+    border-radius: 5%;
+    padding: 10px;
+    margin: 10px;
+}
+
+.left,.right{
+    width: 50%;
+}
+
+@media (max-width: 1000px) {
+    .hostel{
+        width: 30vw;
+    }
 }

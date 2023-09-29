@@ -2,20 +2,36 @@
 
 {% block title %}Toutes nos auberges{% endblock %}
 
+{% block stylesheets %}
+{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
 {% block body %}
-
-    {% if hostels is null %}
-    <h1>Rien à voir ici pour l'instant</h1>
+<div class="d-flex flex-row">
+    {% if hostels is not null %}
+            {% for hostel in hostels %}
+                <div class="hostel border border-2 border-info-subtle">
+                    <div class="left">
+                        {{ hostel.name }} <br>
+                        {{ hostel.city }} <br>
+                        {{ hostel.district.name }} <br>
+                        {{ hostel.streetNumber}} {{ hostel.street  }} <br>
+                        {{ hostel.zipCode }} <br>
+                        {{ hostel.city }} <br>
+                    </div>
+                    <div class="right">
+                        <a href="#" class="bouton btn btn-info">Montrer</a>
+                        {% if app.user %}
+                            {% if "ROLE_ADMIN" in app.user.roles %}
+                                <a href="#" class="bouton btn btn-danger">Delete</a>
+                                <a href="#" class="bouton btn btn-info">Edit</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
     {% else %}
-    {% for house in hostels %}
-        {{ house.name }}
-        {{ house.city }}
-        {{ house.district.name }}
-        {{ house.streetNumber}} {{ house.street  }}
-        {{ house.zipCode }}
-        {{ house.city }}
-    {% endfor %}
-
+        <h1>Rien à voir ici pour l'instant</h1>
     {% endif %}
-
+</div>
 {% endblock %}
