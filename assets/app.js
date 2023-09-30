@@ -7,3 +7,10 @@
 
 // any CSS you import will output into a single css file (app.scss in this case)
 import './styles/app.scss';
+
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', () => {
+    myInput.focus()
+})

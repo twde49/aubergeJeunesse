@@ -11,7 +11,8 @@
     {% if hostels is not null %}
             {% for hostel in hostels %}
                 <div class="hostel border border-2 border-info-subtle">
-                    <div class="left">
+                    <a class="lien" href="{{ path('app_publichouse_show',{id:hostel.id}) }}">
+                    <div class="top">
                         {{ hostel.name }} <br>
                         {{ hostel.city }} <br>
                         {{ hostel.district.name }} <br>
@@ -19,12 +20,12 @@
                         {{ hostel.zipCode }} <br>
                         {{ hostel.city }} <br>
                     </div>
-                    <div class="right">
-                        <a href="#" class="bouton btn btn-info">Montrer</a>
+                    </a>
+                    <div class="bottom">
                         {% if app.user %}
                             {% if "ROLE_ADMIN" in app.user.roles %}
-                                <a href="#" class="bouton btn btn-danger">Delete</a>
-                                <a href="#" class="bouton btn btn-info">Edit</a>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete">Supprimer</button>
+                                <a href="#" class="bouton btn btn-warning">Edit</a>
                             {% endif %}
                         {% endif %}
                     </div>
@@ -34,4 +35,24 @@
         <h1>Rien à voir ici pour l'instant</h1>
     {% endif %}
 </div>
+
+
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalDeleteLabel">Supprimer?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Voulez-vous vraiment supprimer cette auberge?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <a href="#" class="btn btn-outline-danger">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+

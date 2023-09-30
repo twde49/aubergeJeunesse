@@ -39,4 +39,22 @@ class PublicHouseController extends AbstractController
             "hostelForm"=>$hostelForm->createView()
         ]);
     }
+
+    #[Route("/show/{id}",name:"app_publichouse_show" )]
+    public function show(PublicHouse $publicHouse):Response{
+
+        return $this->render("public_house/show.html.twig",[
+            "hostel"=>$publicHouse
+        ]);
+
+    }
+
+
+    public function remove(PublicHouse $publicHouse):Response{
+
+
+    }
+
+
+
 }

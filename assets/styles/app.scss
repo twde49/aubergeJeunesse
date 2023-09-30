@@ -36,19 +36,25 @@ body{
 
 .hostel{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 20vw;
     border-radius: 5%;
     padding: 10px;
     margin: 10px;
 }
 
-.left,.right{
-    width: 50%;
+.top,.bottom{
+    height: 50%;
 }
+
+.lien{
+    text-decoration: none;
+}
+
 
 @media (max-width: 1000px) {
     .hostel{
         width: 30vw;
     }
 }
+
