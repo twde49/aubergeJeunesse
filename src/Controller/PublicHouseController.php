@@ -50,8 +50,13 @@ class PublicHouseController extends AbstractController
     }
 
 
-    public function remove(PublicHouse $publicHouse):Response{
+    #[Route("/remove/{id}",name: "app_publichouse_remove")]
+    public function remove(PublicHouse $publicHouse, EntityManagerInterface $manager):Response{
 
+        $manager->remove($publicHouse);
+        $manager->flush();
+
+        return $this->redirectToRoute("app_public_house");
 
     }
 

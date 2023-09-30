@@ -30,29 +30,28 @@
                         {% endif %}
                     </div>
                 </div>
+                <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="modalDeleteLabel">Supprimer?</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Voulez-vous vraiment supprimer cette auberge?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <a href="{{ path('app_publichouse_remove',{id:hostel.id}) }}" class="btn btn-outline-danger">Supprimer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
     {% else %}
         <h1>Rien à voir ici pour l'instant</h1>
     {% endif %}
 </div>
 
-
-    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDeleteLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modalDeleteLabel">Supprimer?</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Voulez-vous vraiment supprimer cette auberge?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <a href="#" class="btn btn-outline-danger">Supprimer</a>
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock %}
 
