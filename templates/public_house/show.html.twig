@@ -8,6 +8,14 @@
 
 {% block body %}
     <a href="{{ path('app_public_house') }}" class="m-4 btn btn-primary">Retour</a>
-OUI
+    {{ hostel.name }}
+    {% if app.user %}
+        {% if "ROLE_ADMIN" in app.user.roles %}
+
+    <a href="#" class="btn btn-success">Ajouter une chambre</a>
+        {% endif %}
+    {% endif %}
+
+
 {% endblock %}
 

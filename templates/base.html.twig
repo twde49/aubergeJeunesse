@@ -38,11 +38,24 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle  " data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Par regions</a>
                         <div class="dropdown-menu">
-                                {% for region in districts %}
-                                    <a class="dropdown-item" href="#">{{ region }}</a>
-                                {% endfor %}
+                            {% for region in districts %}
+                                <a class="dropdown-item" href="#">{{ region }}</a>
+                            {% endfor %}
                         </div>
                     </li>
+                    {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link  " href="#">Log Out</a>
+                    </li>
+                    {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle  " data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Connexion</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ path('app_login') }}">Log In</a>
+                                <a class="dropdown-item" href="{{ path('app_register') }}">Register</a>
+                            </div>
+                        </li>
+                    {% endif %}
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-sm-2" type="search" placeholder="Search">
@@ -52,6 +65,7 @@
         </div>
     </nav>
     <div class="container">
+
         {% block body %}{% endblock %}
 
     </div>

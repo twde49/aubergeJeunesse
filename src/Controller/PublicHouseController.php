@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route("/house")]
+#[Route("/hostel")]
 class PublicHouseController extends AbstractController
 {
     #[Route('/', name: 'app_public_house')]
@@ -57,6 +57,11 @@ class PublicHouseController extends AbstractController
         $manager->flush();
 
         return $this->redirectToRoute("app_public_house");
+
+    }
+
+
+    public function addRoom():Response{
 
     }
 
