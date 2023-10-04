@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation Dorm{% endblock %}
+
+{% block body %}
+
+    {{ form_start(dormForm) }}
+    {{ form_row(dormForm.number) }}
+    {{ form_row(dormForm.publicHouse) }}
+    <button type="submit" class="btn btn-success">Créer</button>
+    {{ form_end(dormForm) }}
+
+{% endblock %}

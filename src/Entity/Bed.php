@@ -16,15 +16,15 @@ class Bed
     #[ORM\Column]
     private ?bool $booked = null;
 
-    #[ORM\Column]
-    private ?bool $betterBlanket = null;
-
-    #[ORM\Column]
-    private ?bool $betterPillow = null;
-
     #[ORM\ManyToOne(inversedBy: 'beds')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Dorm $dorm = null;
+
+    public function __construct()
+    {
+        return $this->booked = false;
+    }
+
 
     public function getId(): ?int
     {
@@ -39,30 +39,6 @@ class Bed
     public function setBooked(bool $booked): static
     {
         $this->booked = $booked;
-
-        return $this;
-    }
-
-    public function isBetterBlanket(): ?bool
-    {
-        return $this->betterBlanket;
-    }
-
-    public function setBetterBlanket(bool $betterBlanket): static
-    {
-        $this->betterBlanket = $betterBlanket;
-
-        return $this;
-    }
-
-    public function isBetterPillow(): ?bool
-    {
-        return $this->betterPillow;
-    }
-
-    public function setBetterPillow(bool $betterPillow): static
-    {
-        $this->betterPillow = $betterPillow;
 
         return $this;
     }

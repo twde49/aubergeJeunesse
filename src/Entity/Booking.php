@@ -36,6 +36,12 @@ class Booking
     #[ORM\JoinColumn(nullable: false)]
     private ?Dorm $dorm = null;
 
+    #[ORM\Column]
+    private ?bool $betterPillow = null;
+
+    #[ORM\Column]
+    private ?bool $betterBlanket = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +127,30 @@ class Booking
     public function setDorm(?Dorm $dorm): static
     {
         $this->dorm = $dorm;
+
+        return $this;
+    }
+
+    public function isBetterPillow(): ?bool
+    {
+        return $this->betterPillow;
+    }
+
+    public function setBetterPillow(bool $betterPillow): static
+    {
+        $this->betterPillow = $betterPillow;
+
+        return $this;
+    }
+
+    public function isBetterBlanket(): ?bool
+    {
+        return $this->betterBlanket;
+    }
+
+    public function setBetterBlanket(bool $betterBlanket): static
+    {
+        $this->betterBlanket = $betterBlanket;
 
         return $this;
     }

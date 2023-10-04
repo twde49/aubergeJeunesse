@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dorm{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+
+{% block body %}
+{{ dorm.id }}
+
+    {% for bed in dorm.beds %}
+        {{ bed.id }}
+    {% endfor %}
+
+    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddBed">Ajouter des lits dans ce dortoir</button>
+
+
+    <div class="modal fade" id="modalAddBed" tabindex="-1" aria-labelledby="modalAddBedLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalAddBedLabel">Ajouter des lits ?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Combien de lits voulez-vous ajoutez?
+                </div>
+
+                <form action="{{ path('app_dorm_addbed',{id:dorm.id}) }}" method="post">
+
+                    <label>
+                        <input type="number" name="_nbr">
+                    </label>
+
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button class="btn btn-outline-info" type="submit">Ajouter</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

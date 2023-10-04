@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Dorm;
 use App\Entity\PublicHouse;
+use App\Form\DormType;
 use App\Form\PublicHouseType;
 use App\Repository\PublicHouseRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route("/hostel")]
+#[Route("/house")]
 class PublicHouseController extends AbstractController
 {
     #[Route('/', name: 'app_public_house')]
@@ -44,7 +46,8 @@ class PublicHouseController extends AbstractController
     public function show(PublicHouse $publicHouse):Response{
 
         return $this->render("public_house/show.html.twig",[
-            "hostel"=>$publicHouse
+            "hostel"=>$publicHouse,
+            "dorms"=>$publicHouse->getDorms()
         ]);
 
     }
@@ -61,7 +64,30 @@ class PublicHouseController extends AbstractController
     }
 
 
-    public function addRoom():Response{
+    #[Route("/add/{id}")]
+    public function addDorm(Request $request,PublicHouse $publicHouse, EntityManagerInterface $manager):Response{
+
+        $dorm = new Dorm();
+        $dormForm = $this->createForm(DormType::class,$dorm);
+        $dormForm->handleRequest($request);
+        if ($dormForm->isSubmitted()&& $dormForm->isValid()){
+            $manager->persist($dorm);
+            $manager->flush();
+
+            return $this->redirectToRoute("app_publichouse_show",[
+                "id"=>$publicHouse->getId()
+            ]);
+        }
+
+        return $this->render("dorm/create.html.twig",[
+            "dormForm"=>$dormForm->createView()
+        ]);
+    }
+
+    #[Route("/book/{id}")]
+    public function book(PublicHouse $publicHouse):Response{
+
+
 
     }
 
