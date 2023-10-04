@@ -29,6 +29,9 @@ class Dorm
     #[ORM\OneToMany(mappedBy: 'dorm', targetEntity: Bed::class, orphanRemoval: true)]
     private Collection $beds;
 
+    #[ORM\Column]
+    private ?float $pricePerNight = null;
+
     public function __construct()
     {
         $this->booking = new ArrayCollection();
@@ -121,6 +124,18 @@ class Dorm
                 $bed->setDorm(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPricePerNight(): ?float
+    {
+        return $this->pricePerNight;
+    }
+
+    public function setPricePerNight(float $pricePerNight): static
+    {
+        $this->pricePerNight = $pricePerNight;
 
         return $this;
     }

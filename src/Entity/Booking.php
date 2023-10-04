@@ -14,14 +14,11 @@ class Booking
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeInterface $arrivedDate = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeInterface $leavingDate = null;
-
-    #[ORM\Column]
-    private ?float $pricePerNight = null;
 
     #[ORM\Column]
     private ?int $customers = null;
@@ -41,6 +38,10 @@ class Booking
 
     #[ORM\Column]
     private ?bool $betterBlanket = null;
+
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $ofUser = null;
 
     public function getId(): ?int
     {
@@ -67,18 +68,6 @@ class Booking
     public function setLeavingDate(\DateTimeInterface $leavingDate): static
     {
         $this->leavingDate = $leavingDate;
-
-        return $this;
-    }
-
-    public function getPricePerNight(): ?float
-    {
-        return $this->pricePerNight;
-    }
-
-    public function setPricePerNight(float $pricePerNight): static
-    {
-        $this->pricePerNight = $pricePerNight;
 
         return $this;
     }
@@ -151,6 +140,18 @@ class Booking
     public function setBetterBlanket(bool $betterBlanket): static
     {
         $this->betterBlanket = $betterBlanket;
+
+        return $this;
+    }
+
+    public function getOfUser(): ?User
+    {
+        return $this->ofUser;
+    }
+
+    public function setOfUser(?User $ofUser): static
+    {
+        $this->ofUser = $ofUser;
 
         return $this;
     }

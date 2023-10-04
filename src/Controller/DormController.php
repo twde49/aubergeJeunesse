@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Bed;
+use App\Entity\Booking;
 use App\Entity\Dorm;
+use App\Form\BookingType;
 use App\Repository\DormRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,6 +47,30 @@ class DormController extends AbstractController
         }
 
         return $this->redirectToRoute("app_dorm");
+    }
+
+    #[Route("/book/{id}")]
+    public function book(Dorm $dorm, Request $request, EntityManagerInterface $manager):Response{
+
+        $book = new Booking();
+        $bookForm = $this->createForm(BookingType::class, $book);
+        $bookForm->handleRequest($request);
+        if ($bookForm->isSubmitted() && $bookForm->isValid()){
+
+            $book->setDorm($dorm);
+
+            $manager->persist($book);
+            $manager->flush();
+
+            return $this->redirectToRoute("app_publichouse_show",[
+                "id"=>$dorm->getPublicHouse()->getId()
+            ]);
+        }
+
+
+        return $this->render("dorm/book.html.twig",[
+            "bookForm"=>$bookForm->createView()
+        ]);
     }
 
 

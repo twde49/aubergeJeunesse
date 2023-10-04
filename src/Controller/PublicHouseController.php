@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
 use App\Entity\Dorm;
 use App\Entity\PublicHouse;
+use App\Form\BookingType;
 use App\Form\DormType;
 use App\Form\PublicHouseType;
 use App\Repository\PublicHouseRepository;
@@ -82,13 +84,6 @@ class PublicHouseController extends AbstractController
         return $this->render("dorm/create.html.twig",[
             "dormForm"=>$dormForm->createView()
         ]);
-    }
-
-    #[Route("/book/{id}")]
-    public function book(PublicHouse $publicHouse):Response{
-
-
-
     }
 
 

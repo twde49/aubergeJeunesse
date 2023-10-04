@@ -14,7 +14,18 @@
         {{ bed.id }}
     {% endfor %}
 
+    {% if app.user %}
+    {% if "ROLE_ADMIN" in app.user.roles %}
     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddBed">Ajouter des lits dans ce dortoir</button>
+    {% endif %}
+    {% endif %}
+
+    {% if app.user %}
+        <a href="{{ path('app_dorm_book',{id:dorm.id}) }}" class="btn btn-success">Faire une reservation dans cette chambre</a>
+    {% else %}
+        <a href="{{ path('app_login') }}" class="btn btn-success">Faire une reservation dans cette chambre</a>
+    {% endif %}
+
 
 
     <div class="modal fade" id="modalAddBed" tabindex="-1" aria-labelledby="modalAddBedLabel" aria-hidden="true">
