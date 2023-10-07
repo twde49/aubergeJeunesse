@@ -15,7 +15,6 @@ class BookingType extends AbstractType
             ->add('arrivedDate')
             ->add('leavingDate')
             ->add('customers')
-            ->add('numberOfNights')
             ->add('breakfastOption')
             ->add('betterPillow')
             ->add('betterBlanket')

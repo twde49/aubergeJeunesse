@@ -73,6 +73,7 @@ class PublicHouseController extends AbstractController
         $dormForm = $this->createForm(DormType::class,$dorm);
         $dormForm->handleRequest($request);
         if ($dormForm->isSubmitted()&& $dormForm->isValid()){
+            $dorm->setPublicHouse($publicHouse);
             $manager->persist($dorm);
             $manager->flush();
 

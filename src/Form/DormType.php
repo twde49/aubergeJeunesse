@@ -15,10 +15,6 @@ class DormType extends AbstractType
     {
         $builder
             ->add('number')
-            ->add('publicHouse',EntityType::class,[
-                "choice_label"=>"name",
-                "class"=>PublicHouse::class
-            ])
             ->add('pricePerNight')
         ;
     }

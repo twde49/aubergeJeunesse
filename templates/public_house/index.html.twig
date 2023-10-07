@@ -8,7 +8,7 @@
 
 {% block body %}
 <div class="d-flex flex-row">
-    {% if hostels is not null %}
+    {% if hostels %}
             {% for hostel in hostels %}
                 <div class="hostel border border-2 border-info-subtle">
                     <a class="lien" href="{{ path('app_publichouse_show',{id:hostel.id}) }}">
@@ -48,10 +48,13 @@
                     </div>
                 </div>
             {% endfor %}
-    {% else %}
-        <h1>Rien à voir ici pour l'instant</h1>
+
+    {% elseif hostels == [] %}
+        <h3>Rien à voir ici pour l'instant</h3>
     {% endif %}
 </div>
-
+    {% if "ROLE_ADMIN" in app.user.roles %}
+        <a href="{{ path('app_publichouse_new') }}" class="btn btn-lg btn-success">Ajouter une auberge</a>
+    {% endif %}
 {% endblock %}
 

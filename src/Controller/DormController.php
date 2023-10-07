@@ -7,6 +7,7 @@ use App\Entity\Booking;
 use App\Entity\Dorm;
 use App\Form\BookingType;
 use App\Repository\DormRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,9 +59,31 @@ class DormController extends AbstractController
         if ($bookForm->isSubmitted() && $bookForm->isValid()){
 
             $book->setDorm($dorm);
+            $book->setNumberOfNights($book->getLeavingDate()->getTimestamp()-$book->getArrivedDate()->getTimestamp());
+            $book->setOfUser($this->getUser());
+
+            $day1 = $book->getLeavingDate()->format("d");
+            $day2 = $book->getArrivedDate()->format("d");
+            $month1 = $book->getLeavingDate()->format("m");
+            $month2 = $book->getArrivedDate()->format("m");
+            $year1 = $book->getLeavingDate()->format("Y");
+            $year2 = $book->getArrivedDate()->format("Y");
+
+            $sqlData1=$day1 . "." . $month1 . "." . $year1;
+            $sqlData2=$day2 . "." . $month2 . "." . $year2;
+
+
+            $local1=new DateTime($sqlData1);
+            $local2=new DateTime($sqlData2);
+
+            $interval = $local1->diff($local2);
+
+            $book->setNumberOfNights($interval->days);
 
             $manager->persist($book);
             $manager->flush();
+
+
 
             return $this->redirectToRoute("app_publichouse_show",[
                 "id"=>$dorm->getPublicHouse()->getId()
