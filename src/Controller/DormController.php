@@ -80,6 +80,21 @@ class DormController extends AbstractController
 
             $book->setNumberOfNights($interval->days);
 
+
+            $nbr = 0;
+            $nbrOfClients = $book->getCustomers();
+            $nbrOfBedsFree = $book->getDorm()->getBeds();
+            foreach ($nbrOfBedsFree as $bedFree){
+                if(!$bedFree->isBooked()){
+                    $nbr += 1;
+                }
+            }
+            /**if ($nbr>$nbrOfClients){
+                for($i = 0;$i<=$nbrOfClients;$i++){
+
+                }
+            }**/
+
             $manager->persist($book);
             $manager->flush();
 

@@ -3,18 +3,12 @@
 {% block title %}Hello ProfileController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    {% for book in app.user.bookings %}
+         <p>Reservation numéro: {{ book.id }}</p>
+        <p>Nombres de personnes: {{ book.customers }}</p>
+        <p>Nombres de nuit: {{ book.numberOfNights }}</p>
+        <p>Prix par nuit: {{ book.dorm.pricePerNight }}€</p>
+        <p>Numéro de chambre: {{ book.dorm.number }}</p>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/ubuntu/Documents/symfonyProjects/aubergeJeunesse/src/Controller/ProfileController.php'|file_link(0) }}">src/Controller/ProfileController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/ubuntu/Documents/symfonyProjects/aubergeJeunesse/templates/profile/index.html.twig'|file_link(0) }}">templates/profile/index.html.twig</a></code></li>
-    </ul>
-</div>
+    {% endfor %}
 {% endblock %}
