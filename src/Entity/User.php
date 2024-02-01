@@ -35,6 +35,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'ofUser', targetEntity: Booking::class, orphanRemoval: true)]
     private Collection $bookings;
 
+    #[ORM\OneToOne(mappedBy: 'relatedTo', cascade: ['persist', 'remove'])]
+    private ?Profile $profile = null;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -136,6 +139,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $booking->setOfUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProfile(): ?Profile
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(Profile $profile): static
+    {
+        // set the owning side of the relation if necessary
+        if ($profile->getRelatedTo() !== $this) {
+            $profile->setRelatedTo($this);
+        }
+
+        $this->profile = $profile;
 
         return $this;
     }
